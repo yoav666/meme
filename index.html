@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gallery</title>
+    <link rel="stylesheet" href="css/gallery-style.css">
+</head>
+<body onload="onInit()">
+    <header>
+        <h2>logo</h2>
+        <h3><a href="#">gallery</a></h3>
+        <h3><a href="#">memes</a></h3>
+        <h3><a href="#">about</a></h3>
+    </header>
+    <div class="gallery-container">
+        <img id='1' onclick="onImgSelect(this.id)" src="/meme-imgs (square)/1.jpg" alt="trump">
+        <img id='2' onclick="onImgSelect(this.id)"  src="/meme-imgs (square)/2.jpg" alt="puppies">
+        <img id='3' onclick="onImgSelect(this.id)" src="/meme-imgs (square)/3.jpg" alt="puppy with child">
+    </div>
+    <div class="canvas-container" hidden>
+        <canvas class="canvas" width="400" height="400"></canvas>
+        <canvas class="canvas-up" width="400" height="400"></canvas>
+    </div>
+
+    <script src="js/meme-service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
