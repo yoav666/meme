@@ -15,15 +15,24 @@
         <h3><a href="#">about</a></h3>
     </header>
     <div class="gallery-container">
-        <img id='1' onclick="onImgSelect(this.id)" src="/meme-imgs (square)/1.jpg" alt="trump">
-        <img id='2' onclick="onImgSelect(this.id)"  src="/meme-imgs (square)/2.jpg" alt="puppies">
-        <img id='3' onclick="onImgSelect(this.id)" src="/meme-imgs (square)/3.jpg" alt="puppy with child">
     </div>
-    <div class="canvas-container" hidden>
-        <canvas class="canvas" width="400" height="400"></canvas>
-        <canvas class="canvas-up" width="400" height="400"></canvas>
+    <div class="canvas-container-out" hidden>
+        <div class="inputs">
+            <!-- oninput="onTextAddNow(this.value)" -->
+            <input name="input-text" type="text" placeholder="put your meme"  onchange="onTextAdd(this.value)"> 
+            <button class="plus" onclick="changeFontSize(1)">+</button>
+            <button class="minus" onclick="changeFontSize(-1)">-</button>
+            <button class="up" onclick="onChangeLines(1)">up</button>
+            <button class="down" onclick="onChangeLines(-1)">down</button>
+        </div>
+        <div class="canvas-container">
+            <canvas class="canvas" width="800" height="800">
+            </canvas>
+        </div>
     </div>
 
+    <script src="js/storage-service.js"></script>
+    <script src="js/util.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/main.js"></script>
 </body>

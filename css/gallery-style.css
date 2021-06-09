@@ -1,12 +1,33 @@
 *{
     box-sizing: border-box;
 }
+.galllery-container{
+    background-color: red;
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(auto-fill ,250px);
+    grid-auto-rows: 250px;
+}
+img{ 
+    margin: 2px;
+    width:200px;
+    height: 200px;
+} 
+/* .canvas-container-out{ */
+    /* display: flex; */
+
+/* } */
+.inputs{
+    background-color: violet;
+}
 .canvas-container{
+    margin: 0 auto;
+    background-color: bisque;
+    width: 800px;
+    height: 800px;
     position: relative;
 }
 .canvas{
-    position: absolute;
-}
-.canvas-up{
+    margin: 0 auto;
     position: absolute;
 }
