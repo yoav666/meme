@@ -1,19 +1,29 @@
 'use strict'
+const MEME = 'MEME'
 var gMeme;
 var gKeyWords = {
     'happy': 0,
     'funny': 0,
 }
 var gImgs = [
-    { id: 1, url: '/meme-imgs (square)/1.jpg', keywords: ['happy'] },
-    { id: 2, url: '/meme-imgs (square)/2.jpg', keywords: ['funny'] },
-    { id: 3, url: '/meme-imgs (square)/3.jpg', keywords: ['funny'] },
-    { id: 4, url: '/meme-imgs (square)/4.jpg', keywords: ['happy'] },
-    { id: 5, url: '/meme-imgs (square)/5.jpg', keywords: ['funny'] },
-    { id: 6, url: '/meme-imgs (square)/6.jpg', keywords: ['funny'] },
-    { id: 7, url: '/meme-imgs (square)/7.jpg', keywords: ['happy'] },
-    { id: 8, url: '/meme-imgs (square)/8.jpg', keywords: ['funny'] },
-    { id: 9, url: '/meme-imgs (square)/9.jpg', keywords: ['funny'] },
+    { id: 1, url: 'meme-imgs/1.jpg', keywords: ['happy'] },
+    { id: 2, url: 'meme-imgs/2.jpg', keywords: ['funny'] },
+    { id: 3, url: 'meme-imgs/3.jpg', keywords: ['funny'] },
+    { id: 4, url: 'meme-imgs/4.jpg', keywords: ['happy'] },
+    { id: 5, url: 'meme-imgs/5.jpg', keywords: ['funny'] },
+    { id: 6, url: 'meme-imgs/6.jpg', keywords: ['funny'] },
+    { id: 7, url: 'meme-imgs/7.jpg', keywords: ['happy'] },
+    { id: 8, url: 'meme-imgs/8.jpg', keywords: ['funny'] },
+    { id: 9, url: 'meme-imgs/9.jpg', keywords: ['funny'] },
+    { id: 10, url: 'meme-imgs/10.jpg', keywords: ['happy'] },
+    { id: 11, url: 'meme-imgs/11.jpg', keywords: ['funny'] },
+    { id: 12, url: 'meme-imgs/12.jpg', keywords: ['funny'] },
+    { id: 13, url: 'meme-imgs/13.jpg', keywords: ['funny'] },
+    { id: 14, url: 'meme-imgs/14.jpg', keywords: ['happy'] },
+    { id: 15, url: 'meme-imgs/15.jpg', keywords: ['funny'] },
+    { id: 16, url: 'meme-imgs/16.jpg', keywords: ['funny'] },
+    { id: 17, url: 'meme-imgs/17.jpg', keywords: ['happy'] },
+    { id: 18, url: 'meme-imgs/18.jpg', keywords: ['funny'] },
 ];
 // var gMeme = {
 //     selectedImgId: null,
@@ -41,12 +51,13 @@ var gImgs = [
 function getImgTodisplay() {
     return gImgs
 }
-function getNewMeme(imgId){
-    createMeme(imgId)
+function getNewMeme(imgId,currIdx,posX,posY) {
+    createMeme(imgId,currIdx,posX,posY)
+    saveToStorage(MEME, gMeme)
     console.log(gMeme)
     return gMeme
 }
-function getMeme(){
+function getMeme() {
     return gMeme
 }
 // function getMeme(imgId) {
@@ -61,29 +72,30 @@ function getMeme(){
 //     console.log(gMeme)
 //     console.log(gMeme.lines[gMeme.selectedLineIdx])
 // }
-function textAdd(newLine){
-    
+function textAdd(newLine) {
     gMeme.lines.push(newLine)
+    saveToStorage(MEME, gMeme)
     console.log(gMeme)
-    return gMeme.lines.length
+    return gMeme.lines
     // gMeme.lines.push(newLine)
 }
 
 
-function createMeme(id, txt = makeLorem(3), size = 50, align = 'center', color = 'black', strokeColor = 'white', posX=400,posY=100) {
+function createMeme(id,currIdx, posX=gCanvas.width/2, posY=gCanvas.height/8, txt = makeLorem(3), size = 50, align = 'center', color = 'black', strokeColor = 'white') {
     gMeme = {
         id,
-        url: '/meme-imgs (square)/' + id + '.jpg',
+        url: `meme-imgs/${id}.jpg`,
         lines: [
             {
-            txt,
-            size,
-            align,
-            color,
-            strokeColor,
-            posX,
-            posY,
-        },
-    ]
-    }}
-   
+                txt,
+                currIdx,
+                size,
+                align,
+                color,
+                strokeColor,
+                posX,
+                posY,
+            },
+        ]
+    }
+}

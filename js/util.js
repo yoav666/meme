@@ -13,7 +13,7 @@ function makeId(length = 6) {
 }
 
 function makeLorem(size = 100) {
-    var words = ['The sky', 'above', 'the', 'was', 'television', 'tuned', 'to', ' dead ', 'css', 'All', 'happened', 'more' ,'less', 'css', 'I', 'had', 'story', 'bit', 'people', 'and', 'generally.', 'happens', 'such cases', 'each time', 'it', 'was','html','js','but','high' ,'different', 'css', 'It', 'was', 'pleasure', 'to', 'burn'];
+    var words = ['sky', 'above', 'the', 'was', 'tuned', 'to', ' dead ', 'css', 'All', 'happened', 'more', 'less', 'css', 'I', 'had', 'story', 'bit', 'people', 'and', 'such', 'each', 'it', 'was', 'html', 'js', 'but', 'high', 'css', 'It', 'was', 'pleasure', 'to', 'burn'];
     var txt = '';
     while (size > 0) {
         size--;
@@ -25,7 +25,7 @@ function makeLorem(size = 100) {
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 

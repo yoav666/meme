@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,33 +8,47 @@
     <title>gallery</title>
     <link rel="stylesheet" href="css/gallery-style.css">
 </head>
+
 <body onload="onInit()">
-    <header>
-        <h2>logo</h2>
-        <h3><a href="#">gallery</a></h3>
-        <h3><a href="#">memes</a></h3>
-        <h3><a href="#">about</a></h3>
+    <header class="header-container">
+        <div class="header-layout">
+            <h2 class="logo"><img src="icons/LOGO.png" alt=""></h2>
+            <ul class="nav">
+                <li><a href="#" onclick="closeEditor()">gallery</a></li>
+                <li><a href="#">memes</a></li>
+                <li><a href="#" >about</a></li>
+            </ul>
+        </div>
+        <div class="search"></div>
+        <!-- <img src="meme-imgs/1.jpg" alt=""> -->
     </header>
     <div class="gallery-container">
     </div>
+    <!--oninput="onTextAddNow(this.value)" -->
     <div class="canvas-container-out" hidden>
-        <div class="inputs">
-            <!-- oninput="onTextAddNow(this.value)" -->
-            <input name="input-text" type="text" placeholder="put your meme"  onchange="onTextAdd(this.value)"> 
-            <button class="plus" onclick="changeFontSize(1)">+</button>
-            <button class="minus" onclick="changeFontSize(-1)">-</button>
-            <button class="up" onclick="onChangeLines(1)">up</button>
-            <button class="down" onclick="onChangeLines(-1)">down</button>
-        </div>
         <div class="canvas-container">
-            <canvas class="canvas" width="800" height="800">
-            </canvas>
+            <canvas class="canvas" width="600" height="600"></canvas>
+        </div>
+        <div class="inputs">
+            <input class="input-text" name="input-text" type="text" placeholder="put your meme" oninput="onTextAddNow(this.value)" onchange="onTextAdd(this.value)" autocomplete="off">
+            <div class="btns-container">
+                <button class="btn-add-meme" onclick="onTextAdd()" ><img src="icons/add.png" alt=""></button>
+                <button onclick="closeEditor()" class="btn-trash"><img src="ICONS/trash.png"></button>
+                <button class="btn-increase-font" onclick="changeFontSize(1)" ><img src="icons/increase font - icon.png" alt=""></button>
+                <button class="btn-decrease-font" onclick="changeFontSize(-1)"><img src="icons/decrease font - icon.png" alt=""></button>
+                <button class="btn-lines-up" onclick="onChangeLines(1)"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+                <!-- <button class="btn-lines-down" onclick="onChangeLines(-1)"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button> -->
+            </div>
         </div>
     </div>
+    <footer>
+        <h3 class="coffee-rights">meme 2021 &copy</h3>
+    </footer>
 
     <script src="js/storage-service.js"></script>
     <script src="js/util.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
