@@ -16,7 +16,7 @@
             <ul class="nav">
                 <li><a href="#" onclick="closeEditor()">gallery</a></li>
                 <li><a href="#">memes</a></li>
-                <li><a href="#" >about</a></li>
+                <li><a href="#">about</a></li>
             </ul>
         </div>
         <div class="search"></div>
@@ -24,19 +24,25 @@
     </header>
     <div class="gallery-container">
     </div>
-    <!--oninput="onTextAddNow(this.value)" -->
+    <!--oninput="onTextAddNow(this.value)" onchange="onTextAdd(this.value)" onclick="onTextAdd()"-->
     <div class="canvas-container-out" hidden>
         <div class="canvas-container">
             <canvas class="canvas" width="600" height="600"></canvas>
         </div>
         <div class="inputs">
-            <input class="input-text" name="input-text" type="text" placeholder="put your meme" oninput="onTextAddNow(this.value)" onchange="onTextAdd(this.value)" autocomplete="off">
+            <!-- <form action="" onsubmit="onTextAdd(event)"> -->
+            <input class="input-text" name="input-text" type="text" placeholder="put your meme"
+                onchange="onTextAdd(event,this.value)" autocomplete="off">
+            <!-- </form> -->
             <div class="btns-container">
-                <button class="btn-add-meme" onclick="onTextAdd()" ><img src="ICONS/add.png" alt=""></button>
-                <button onclick="closeEditor()" class="btn-trash"><img src="ICONS/trash.png"></button>
-                <button class="btn-increase-font" onclick="changeFontSize(1)" ><img src="ICONS/increase font - icon.png" alt=""></button>
-                <button class="btn-decrease-font" onclick="changeFontSize(-1)"><img src="ICONS/decrease font - icon.png" alt=""></button>
-                <button class="btn-lines-up" onclick="onChangeLines(1)"><img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+                <button class="btn-add-meme" onclick="onTextAdd(event)"><img src="ICONS/add.png" alt=""></button>
+                <button onclick="onDeleteMeme()" class="btn-trash"><img src="ICONS/trash.png"></button>
+                <button class="btn-increase-font" onclick="onChangeFontSize(event,1)"><img src="ICONS/increase font - icon.png"
+                        alt=""></button>
+                <button class="btn-decrease-font" onclick="onChangeFontSize(event,-1)"><img src="ICONS/decrease font - icon.png"
+                        alt=""></button>
+                <button class="btn-lines-up" onclick="onChangeLines(event,1)"><img
+                        src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                 <!-- <button class="btn-lines-down" onclick="onChangeLines(-1)"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button> -->
             </div>
         </div>

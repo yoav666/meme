@@ -79,9 +79,11 @@ function textAdd(newLine) {
     return gMeme.lines
     // gMeme.lines.push(newLine)
 }
+// function changeFontSize(line){
+    
+// }
 
-
-function createMeme(id,currIdx, posX=gCanvas.width/2, posY=gCanvas.height/8, txt = makeLorem(3), size = 50, align = 'center', color = 'black', strokeColor = 'white') {
+function createMeme(id,currIdx, posX=gCanvas.width/2, posY=gCanvas.height/10, txt = makeLorem(3), size = 50, align = 'center', color = 'black', strokeColor = 'white') {
     gMeme = {
         id,
         url: `meme-imgs/${id}.jpg`,
@@ -89,13 +91,38 @@ function createMeme(id,currIdx, posX=gCanvas.width/2, posY=gCanvas.height/8, txt
             {
                 txt,
                 currIdx,
-                size,
-                align,
                 color,
                 strokeColor,
+                size,
+                align,
                 posX,
                 posY,
             },
         ]
     }
+}
+function deleteMeme(idx){
+    console.log(idx)
+var memeToDel=gMeme.lines[idx]
+gMeme.lines.splice(idx,1)
+if(!gMeme.lines.length)return gMeme
+gMeme.lines.forEach(line => {
+    if (line.currIdx<idx) line.currIdx=line.currIdx
+    if (line.currIdx>idx)line.currIdx--
+    // line.currIdx--
+    // if (line.currIdx<0) line.currIdx=gMeme.lines.length
+    // if (line.currIdx<0) line.currIdx=0
+});
+console.log(memeToDel)
+console.log(gMeme)
+return gMeme
+}
+function changeFontSize(idx,diff){
+var currFontSize=gMeme.lines[idx].size
+console.log(currFontSize)
+currFontSize+=diff
+console.log(currFontSize)
+gMeme.lines[idx].size=currFontSize
+console.log(gMeme)
+return gMeme.lines
 }
