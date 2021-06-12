@@ -20,30 +20,42 @@
             </ul>
         </div>
         <div class="search"></div>
-        <!-- <img src="meme-imgs/1.jpg" alt=""> -->
     </header>
     <div class="gallery-container">
     </div>
-    <!--oninput="onTextAddNow(this.value)" onchange="onTextAdd(this.value)" onclick="onTextAdd()"-->
     <div class="canvas-container-out" hidden>
         <div class="canvas-container">
             <canvas class="canvas" width="600" height="600"></canvas>
         </div>
         <div class="inputs">
-            <!-- <form action="" onsubmit="onTextAdd(event)"> -->
             <input class="input-text" name="input-text" type="text" placeholder="put your meme"
                 onchange="onTextAdd(event,this.value)" autocomplete="off">
-            <!-- </form> -->
             <div class="btns-container">
-                <button class="btn-add-meme" onclick="onTextAdd(event)"><img src="ICONS/add.png" alt=""></button>
-                <button onclick="onDeleteMeme()" class="btn-trash"><img src="ICONS/trash.png"></button>
-                <button class="btn-increase-font" onclick="onChangeFontSize(event,1)"><img src="ICONS/increase font - icon.png"
-                        alt=""></button>
-                <button class="btn-decrease-font" onclick="onChangeFontSize(event,-1)"><img src="ICONS/decrease font - icon.png"
-                        alt=""></button>
-                <button class="btn-lines-up" onclick="onChangeLines(event,1)"><img
+                <button class="btn add-meme"><img src="ICONS/add.png" alt=""></button>
+                <button class="btn trash" onclick="onDeleteMeme()"><img src="ICONS/trash.png"></button>
+                <button class="btn increase-font" onclick="onChangeFontSize(event,1)"><img
+                        src="ICONS/increase font - icon.png" alt=""></button>
+                <button class="btn decrease-font" onclick="onChangeFontSize(event,-1)"><img
+                        src="ICONS/decrease font - icon.png" alt=""></button>
+                <button class="btn lines-up" onclick="onChangeLines(event,1)"><img
                         src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
-                <!-- <button class="btn-lines-down" onclick="onChangeLines(-1)"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button> -->
+                <button class="btn align-right" onclick="onChangeAlign(event,'right')"><img
+                        src="ICONS/align-to-left.png" alt=""></button>
+                <button class="btn align-center" onclick="onChangeAlign(event,'center')"><img
+                        src="ICONS/center-text-alignment.png" alt=""></button>
+                <button class="btn align-left" onclick="onChangeAlign(event,'left')"><img src="ICONS/align-to-right.png"
+                        alt=""></button>
+                <button class="btn stroke-color" onclick="onChangeStrokeColor()"><img src="ICONS/text-stroke.png"
+                        alt=""><input type="color" name="input-stroke" value="#ffffff" class="input-stroke"
+                        onchange="onChangeStrokeColor(this.value)"></button>
+                <button class="btn fill-color" onclick="onChangeFillColor()"><img src="ICONS/paint-board-and-brush.png"
+                        alt=""><input type="color" name="input-fill" class="input-fill"
+                        onchange="onChangeFillColor(this.value)"></button>
+                <select class="select-font" onchange="onChangeFont(event,value)">
+                    <option value="IMPACT">IMPACT</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                </select>
             </div>
         </div>
     </div>

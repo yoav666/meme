@@ -25,34 +25,12 @@ var gImgs = [
     { id: 17, url: 'meme-imgs/17.jpg', keywords: ['happy'] },
     { id: 18, url: 'meme-imgs/18.jpg', keywords: ['funny'] },
 ];
-// var gMeme = {
-//     selectedImgId: null,
-//     selectedLineIdx: null,
-//     lines: [
-//         {   
-//             txt: 'I never eat falafel',
-//             size: 50,
-//             align: 'center',
-//             color: 'black',
-//             strokeColor: 'white'
-//         },
-//     ]
-// }
-
-
-
-// function getImg(imgId) {
-//     var img = gImgs.find(function (img) {
-//         return +imgId === img.id
-//     })
-//     return img.url
-// }
 
 function getImgTodisplay() {
     return gImgs
 }
-function getNewMeme(imgId,currIdx,posX,posY) {
-    createMeme(imgId,currIdx,posX,posY)
+function getNewMeme(imgId, currIdx, posX, posY) {
+    createMeme(imgId, currIdx, posX, posY)
     saveToStorage(MEME, gMeme)
     console.log(gMeme)
     return gMeme
@@ -60,30 +38,14 @@ function getNewMeme(imgId,currIdx,posX,posY) {
 function getMeme() {
     return gMeme
 }
-// function getMeme(imgId) {
-//     gMeme.selectedImgId = +imgId
-//     gMeme.selectedLineIdx = gMeme.selectedImgId - 1
-//     var line = gMeme.lines[gMeme.selectedLineIdx]
-//     return line
-// }
-// function textAdd(newTxt) {
-//     console.log(gMeme.selectedImgId)
-//     gMeme.lines[gMeme.selectedLineIdx].txt.push(newTxt)
-//     console.log(gMeme)
-//     console.log(gMeme.lines[gMeme.selectedLineIdx])
-// }
 function textAdd(newLine) {
     gMeme.lines.push(newLine)
     saveToStorage(MEME, gMeme)
     console.log(gMeme)
     return gMeme.lines
-    // gMeme.lines.push(newLine)
 }
-// function changeFontSize(line){
-    
-// }
 
-function createMeme(id,currIdx, posX=gCanvas.width/2, posY=gCanvas.height/10, txt = makeLorem(3), size = 50, align = 'center', color = 'black', strokeColor = 'white') {
+function createMeme(id, currIdx, posX = gCanvas.width / 2, posY = gCanvas.height / 10, txt = makeLorem(3), size = 50,font='IMPACT', align = 'center', color = 'black', strokeColor = 'white') {
     gMeme = {
         id,
         url: `meme-imgs/${id}.jpg`,
@@ -94,6 +56,7 @@ function createMeme(id,currIdx, posX=gCanvas.width/2, posY=gCanvas.height/10, tx
                 color,
                 strokeColor,
                 size,
+                font,
                 align,
                 posX,
                 posY,
@@ -101,28 +64,67 @@ function createMeme(id,currIdx, posX=gCanvas.width/2, posY=gCanvas.height/10, tx
         ]
     }
 }
-function deleteMeme(idx){
-    console.log(idx)
-var memeToDel=gMeme.lines[idx]
-gMeme.lines.splice(idx,1)
-if(!gMeme.lines.length)return gMeme
-gMeme.lines.forEach(line => {
-    if (line.currIdx<idx) line.currIdx=line.currIdx
-    if (line.currIdx>idx)line.currIdx--
-    // line.currIdx--
-    // if (line.currIdx<0) line.currIdx=gMeme.lines.length
-    // if (line.currIdx<0) line.currIdx=0
-});
-console.log(memeToDel)
-console.log(gMeme)
-return gMeme
+function changeText(idx, char) {
+    var text = gMeme.lines[idx].txt
+    text = char
+    gMeme.lines[idx].txt = text
+    console.log(gMeme)
+    return gMeme.lines
 }
-function changeFontSize(idx,diff){
-var currFontSize=gMeme.lines[idx].size
-console.log(currFontSize)
-currFontSize+=diff
-console.log(currFontSize)
-gMeme.lines[idx].size=currFontSize
-console.log(gMeme)
-return gMeme.lines
+//need to make it better.... now its for 3 not so good!!!!
+function deleteMeme(idx) {
+    var firstposx=gMeme.lines[idx].posX
+    var firstposy=gMeme.lines[idx].posY
+    if(gMeme.lines[idx+1]){
+        var nexttposx=gMeme.lines[idx+1].posX
+        var nexttposy=gMeme.lines[idx+1].posY
+    }
+    gMeme.lines.splice(idx, 1)
+    if (!gMeme.lines.length) return gMeme
+    gMeme.lines.forEach(line => {
+        if (line.currIdx < idx) line.currIdx = line.currIdx
+        if (line.currIdx > idx){
+            if (line.currIdx-idx===1){
+                line.posX=firstposx
+                line.posY=firstposy
+            }
+            if (line.currIdx-idx===2){
+                line.posX=nexttposx
+                line.posY=nexttposy
+            }
+            line.currIdx--
+        } 
+    });
+    console.log(gMeme)
+    return gMeme
+}
+function changeFontSize(idx, diff) {
+    var currFontSize = gMeme.lines[idx].size
+    currFontSize += diff
+    gMeme.lines[idx].size = currFontSize
+    return gMeme.lines
+}
+function changeFont(idx,font){
+    var currFont=gMeme.lines[idx].font
+    currFont=font
+    gMeme.lines[idx].font=currFont
+}
+function changeAlign(idx, align) {
+    var currAlign = gMeme.lines[idx].align
+    currAlign = align
+    gMeme.lines[idx].align = currAlign
+    return gMeme.lines
+}
+function changeStrokeColor(idx,strokeColor){
+    var currStrokeColor=gMeme.lines[idx].strokeColor
+    currStrokeColor=strokeColor
+    gMeme.lines[idx].strokeColor=currStrokeColor
+    return gMeme.lines
+}
+function changeFillColor(idx,fillColor){
+    var currFillColor=gMeme.lines[idx].color
+    currFillColor=fillColor
+    gMeme.lines[idx].color=currFillColor
+    return gMeme.lines
+    
 }
