@@ -19,7 +19,6 @@ function onInit() {
     gCtx = gCanvas.getContext('2d')
     renderGallery()
 }
-
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gCanvas.width = elContainer.offsetWidth
@@ -49,7 +48,7 @@ function onImgSelect(imgId) {
     drawImg(gImg, gText, gstartPos.posX, gstartPos.posY)
     var btnAdd = document.querySelector('.add-meme')
     btnAdd.addEventListener('click', onTextAdd)
-
+    
 }
 function onEmojiDraw(url){
     console.log(img)
@@ -308,10 +307,14 @@ function drawImgAfter(url) {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }
 function renderGallery() {
-    var imgs = getImgTodisplay()
+    var imgs = getImgToDisplay()
     var strHTMLs = imgs.map(function (img) {
         return `<img id="${img.id}" onclick="onImgSelect(this.id)" src="${img.url}">`
     })
     var elgallery = document.querySelector('.gallery-container')
     elgallery.innerHTML = strHTMLs.join('')
+}
+function onSetFilter(txt){
+    setFilter({txt: txt})
+    renderGallery()
 }
