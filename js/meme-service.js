@@ -26,13 +26,13 @@ var gImgs = [
     { id: 18, url: 'meme-imgs/18.jpg', keywords: ['funny'] },
 ];
 
+
 function getImgTodisplay() {
     return gImgs
 }
 function getNewMeme(imgId, currIdx, posX, posY) {
     createMeme(imgId, currIdx, posX, posY)
     saveToStorage(MEME, gMeme)
-    console.log(gMeme)
     return gMeme
 }
 function getMeme() {
@@ -41,7 +41,6 @@ function getMeme() {
 function textAdd(newLine) {
     gMeme.lines.push(newLine)
     saveToStorage(MEME, gMeme)
-    console.log(gMeme)
     return gMeme.lines
 }
 
@@ -68,7 +67,6 @@ function changeText(idx, char) {
     var text = gMeme.lines[idx].txt
     text = char
     gMeme.lines[idx].txt = text
-    console.log(gMeme)
     return gMeme.lines
 }
 //need to make it better.... now its for 3 not so good!!!!
@@ -95,14 +93,12 @@ function deleteMeme(idx) {
             line.currIdx--
         } 
     });
-    console.log(gMeme)
     return gMeme
 }
 function changeFontSize(idx, diff) {
     var currFontSize = gMeme.lines[idx].size
     currFontSize += diff
     gMeme.lines[idx].size = currFontSize
-    return gMeme.lines
 }
 function changeFont(idx,font){
     var currFont=gMeme.lines[idx].font
@@ -113,18 +109,20 @@ function changeAlign(idx, align) {
     var currAlign = gMeme.lines[idx].align
     currAlign = align
     gMeme.lines[idx].align = currAlign
-    return gMeme.lines
 }
 function changeStrokeColor(idx,strokeColor){
     var currStrokeColor=gMeme.lines[idx].strokeColor
     currStrokeColor=strokeColor
     gMeme.lines[idx].strokeColor=currStrokeColor
-    return gMeme.lines
 }
 function changeFillColor(idx,fillColor){
     var currFillColor=gMeme.lines[idx].color
     currFillColor=fillColor
     gMeme.lines[idx].color=currFillColor
-    return gMeme.lines
     
+}
+function moveText(idx,diffY){
+    var currPosY=gMeme.lines[idx].posY
+    currPosY+=diffY
+    gMeme.lines[idx].posY=currPosY
 }

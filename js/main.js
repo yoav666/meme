@@ -17,9 +17,7 @@ var gIsChange = false;
 function onInit() {
     gCanvas = document.querySelector('.canvas')
     gCtx = gCanvas.getContext('2d')
-
     renderGallery()
-
 }
 
 function resizeCanvas() {
@@ -32,6 +30,8 @@ function onImgSelect(imgId) {
     galleryContainer.style.display = 'none'
     var memeEditor = document.querySelector('.canvas-container-out')
     memeEditor.style.display = 'flex'
+    var searchbar=document.querySelector('.search');
+    searchbar.style.display='none'
     resizeCanvas()
     gstartPos = { posX: gCanvas.width / 2, posY: gCanvas.height / 10 }
     console.log(gstartPos)
@@ -51,13 +51,20 @@ function onImgSelect(imgId) {
     btnAdd.addEventListener('click', onTextAdd)
 
 }
+function onEmojiDraw(url){
+    console.log(img)
+    var img=new Image()
+    img.src=url
+    gCtx.drawImage(img,gCanvas.width/2,gCanvas.height/2,200,200)
+}
 function closeEditor() {
     var galleryContainer = document.querySelector('.gallery-container')
     galleryContainer.style.display = 'grid'
     var memeEditor = document.querySelector('.canvas-container-out')
     memeEditor.style.display = 'none'
+    var searchbar=document.querySelector('.search');
+    searchbar.style.display='flex'
     gCurrIdx = 0
-
 }
 
 function onTextAdd(ev, txt) {
@@ -107,6 +114,7 @@ function drawTextAgain() {
         }
     })
 }
+
 function onChangeLines(ev, num = 0) {
     var meme = getMeme()
     if (!meme.lines.length) return
@@ -132,29 +140,60 @@ function onChangeLines(ev, num = 0) {
     inputText.addEventListener('input', onChangeText)
     btnAdd.removeEventListener('click', onTextAdd)
     btnAdd.addEventListener('click', onAproveText)
-
 }
-function onChangeStrokeColor(color){
-    gfontStrokeColor=color
+function onMoveText(diff){
     if (!gIsChange) return
     gCtx.save()
-    changeStrokeColor(gLines,color)
+    moveText(gLines, diff)
     var meme = getMeme()
     drawImgAfter(meme.url)
     drawTextAgain()
     onChangeLines()
     gCtx.restore()
 }
-function onChangeFillColor(color){
-    gfontColor=color
+function onChangeStrokeColorBtn(){
+    var inputStroke=document.querySelector('.input-stroke');
+    inputStroke.hidden=false
+    var btnStroke=document.querySelector('.stroke-color')
+    btnStroke.hidden=true;  
+}
+function onChangeStrokeColor(color) {
+    gfontStrokeColor = color
     if (!gIsChange) return
     gCtx.save()
-    changeFillColor(gLines,color)
+    changeStrokeColor(gLines, color)
     var meme = getMeme()
     drawImgAfter(meme.url)
     drawTextAgain()
     onChangeLines()
     gCtx.restore()
+    console.log('hi color')
+    var inputStroke=document.querySelector('.input-stroke');
+    inputStroke.hidden=true
+    var btnStroke=document.querySelector('.stroke-color')
+    btnStroke.hidden=false;
+}
+function onChangeFillColorBtn(){
+    var inputFill=document.querySelector('.input-fill');
+    inputFill.hidden=false
+    var btnFill=document.querySelector('.fill-color')
+    btnFill.hidden=true;  
+}
+function onChangeFillColor(color) {
+    var inputFill=document.querySelector('.input-fill')
+    gfontColor = color
+    if (!gIsChange) return
+    gCtx.save()
+    changeFillColor(gLines, color)
+    var meme = getMeme()
+    drawImgAfter(meme.url)
+    drawTextAgain()
+    onChangeLines()
+    gCtx.restore()
+    var inputFill=document.querySelector('.input-fill');
+    inputFill.hidden=true
+    var btnFill=document.querySelector('.fill-color')
+    btnFill.hidden=false;  
 }
 function onChangeText() {
     var meme = getMeme()
@@ -184,7 +223,7 @@ function onAproveText(ev) {
     btnAdd.addEventListener('click', onTextAdd)
 }
 function onChangeFontSize(ev, num) {
-    gfontSize+=num
+    gfontSize += num
     if (!gIsChange) return
     ev.stopPropagation()
     gCtx.save()

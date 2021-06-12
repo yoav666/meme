@@ -21,44 +21,68 @@
         </div>
         <div class="search"></div>
     </header>
-    <div class="gallery-container">
-    </div>
-    <div class="canvas-container-out" hidden>
-        <div class="canvas-container">
-            <canvas class="canvas" width="600" height="600"></canvas>
+    <main>
+
+        <div class="gallery-container">
         </div>
-        <div class="inputs">
-            <input class="input-text" name="input-text" type="text" placeholder="put your meme"
-                onchange="onTextAdd(event,this.value)" autocomplete="off">
-            <div class="btns-container">
-                <button class="btn add-meme"><img src="ICONS/add.png" alt=""></button>
-                <button class="btn trash" onclick="onDeleteMeme()"><img src="ICONS/trash.png"></button>
-                <button class="btn increase-font" onclick="onChangeFontSize(event,1)"><img
-                        src="ICONS/increase font - icon.png" alt=""></button>
-                <button class="btn decrease-font" onclick="onChangeFontSize(event,-1)"><img
-                        src="ICONS/decrease font - icon.png" alt=""></button>
-                <button class="btn lines-up" onclick="onChangeLines(event,1)"><img
-                        src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
-                <button class="btn align-right" onclick="onChangeAlign(event,'right')"><img
-                        src="ICONS/align-to-left.png" alt=""></button>
-                <button class="btn align-center" onclick="onChangeAlign(event,'center')"><img
-                        src="ICONS/center-text-alignment.png" alt=""></button>
-                <button class="btn align-left" onclick="onChangeAlign(event,'left')"><img src="ICONS/align-to-right.png"
-                        alt=""></button>
-                <button class="btn stroke-color" onclick="onChangeStrokeColor()"><img src="ICONS/text-stroke.png"
-                        alt=""><input type="color" name="input-stroke" value="#ffffff" class="input-stroke"
-                        onchange="onChangeStrokeColor(this.value)"></button>
-                <button class="btn fill-color" onclick="onChangeFillColor()"><img src="ICONS/paint-board-and-brush.png"
-                        alt=""><input type="color" name="input-fill" class="input-fill"
-                        onchange="onChangeFillColor(this.value)"></button>
-                <select class="select-font" onchange="onChangeFont(event,value)">
-                    <option value="IMPACT">IMPACT</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Verdana">Verdana</option>
-                </select>
+        <div class="canvas-container-out" hidden>
+            <div class="canvas-container">
+                <canvas class="canvas" width="600" height="600"></canvas>
+            </div>
+            <div class="grid">
+                <div class="div1 flex-center"> <input class="input-text" name="input-text" type="text"
+                        placeholder="put your meme" onchange="onTextAdd(event,this.value)" autocomplete="off"></div>
+                <div class="div15 flex-center"><button class="btn arrow-up" onclick="onMoveText(-10)"><img
+                            src="ICONS/arrow-up.png" alt=""></button></div>
+                <div class="div2 flex-center"><button class="btn lines-up" onclick="onChangeLines(event,1)"><img
+                            src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button></div>
+                <div class="div4 flex-center"><button class="btn add-meme"><img src="ICONS/add.png" alt=""></button>
+                </div>
+                <div class="div3 flex-center"> <button class="btn trash" onclick="onDeleteMeme()"><img
+                            src="ICONS/trash.png"></button>
+                </div>
+                <div class="div16 flex-center"><button class="btn arrow-down" onclick="onMoveText(10)"><img
+                            src="ICONS/arrow-down.png" alt=""></button></div>
+                <div class="div5 flex-center"> <button class="btn increase-font"
+                        onclick="onChangeFontSize(event,1)"><img src="ICONS/increase-font-icon.png" alt=""></button>
+                </div>
+                <div class="div6 flex-center"> <button class="btn decrease-font"
+                        onclick="onChangeFontSize(event,-1)"><img src="ICONS/decrease-font-icon.png" alt=""></button>
+                </div>
+                <div class="div7 flex-center"><button class="btn align-right"
+                        onclick="onChangeAlign(event,'right')"><img src="ICONS/align-to-left.png" alt=""></button></div>
+                <div class="div8 flex-center"><button class="btn align-center"
+                        onclick="onChangeAlign(event,'center')"><img src="ICONS/center-text-alignment.png"
+                            alt=""></button></div>
+                <div class="div9 flex-center"><button class="btn align-left" onclick="onChangeAlign(event,'left')"><img
+                            src="ICONS/align-to-right.png" alt=""></button></div>
+                <div class="div10 flex-center"> <select class="select-font" onchange="onChangeFont(event,value)">
+                        <option value="IMPACT">IMPACT</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Verdana">Verdana</option>
+                    </select></div>
+                <div class="div11 flex-center"><button class="btn stroke-color" onclick="onChangeStrokeColorBtn()"><img
+                            src="ICONS/text-stroke.png" alt=""></button>
+                    <input type="color" name="input-stroke" value="#ffffff" class="input-stroke"
+                        onchange="onChangeStrokeColor(this.value)" hidden>
+                </div>
+                <div class="div12 flex-center"><button class="btn fill-color" onclick="onChangeFillColorBtn()"><img
+                            src="ICONS/paint-board-and-brush.png" alt=""></button>
+                    <input type="color" name="input-fill" class="input-fill" onchange="onChangeFillColor(this.value)"
+                        hidden>
+                </div>
+                <div class="div13">
+                    <img src="ICONS/arrow-left.png" alt="">
+                    <img id="emoji-1"
+                        src="ICONS/hairmoustachehairstylefontclip-artillustrationblack-and-monical-png-779_1024.png"
+                        alt="" class="moustache" onclick="onEmojiDraw(this.src)">
+                    <img id="emoji-2" src="ICONS/neck.png" alt="" onclick="onEmojiDraw(this.src)">
+                    <img src="ICONS/arrow-right.png" alt="">
+                </div>
+                <div class="div14"></div>
             </div>
         </div>
-    </div>
+    </main>
     <footer>
         <h3 class="coffee-rights">meme 2021 &copy</h3>
     </footer>
