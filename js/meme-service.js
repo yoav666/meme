@@ -32,12 +32,7 @@ var gImgs = [
 function setFilter(filterBy) {
     gFilterBy = filterBy
 }
-
 function getImgToDisplay() {
-    return gImgs
-}
-function getImgToDisplay() {
-    console.log('hi')
     var regex = new RegExp(gFilterBy.txt, 'i')
     var imgs = gImgs.filter(function(img) {
         return regex.test(img.keywords)
@@ -58,7 +53,7 @@ function textAdd(newLine) {
     return gMeme.lines
 }
 
-function createMeme(id, currIdx, posX = gCanvas.width / 2, posY = gCanvas.height / 10, txt = makeLorem(3), size = 50, font = 'IMPACT', align = 'center', color = 'black', strokeColor = 'white') {
+function createMeme(id, currIdx, posX = gCanvas.width / 2, posY = gCanvas.height / 8, txt = makeLorem(3), size = 30, font = 'IMPACT', align = 'center', color = 'black', strokeColor = 'white') {
     gMeme = {
         id,
         url: `meme-imgs/${id}.jpg`,
@@ -83,7 +78,6 @@ function changeText(idx, char) {
     gMeme.lines[idx].txt = text
     return gMeme.lines
 }
-//need to make it better.... now its for 3 not so good!!!!
 function deleteMeme(idx) {
     var firstposx = gMeme.lines[idx].posX
     var firstposy = gMeme.lines[idx].posY

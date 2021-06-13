@@ -10,71 +10,75 @@
 </head>
 
 <body onload="onInit()">
-    <header class="header-container">
-        <div class="header-layout">
-            <h2 class="logo"><img src="ICONS/LOGO.png" alt=""></h2>
+    <header class="header-container ">
+        <div class="header layout">
+            <img class="logo" src="ICONS/LOGO.png" alt="">
+            <button class="btn-menu" onclick="onOpenCloseMenu()">☰</button>
             <ul class="nav">
                 <li><a href="#" onclick="closeEditor()">gallery</a></li>
-                <li><a href="#">memes</a></li>
+                <li><a href="meme.html">memes</a></li>
                 <li><a href="#">about</a></li>
             </ul>
         </div>
-        <div class="search">
-            <input type="text" placeholder="put text" oninput="onSetFilter(this.value)" class="input-search" />
-            <img class="search-img" src="ICONS/search-icon.png" alt="">
+        <div class="search-container">
+            <div class="search layout">
+                <input type="text" placeholder="put text" oninput="onSetFilter(this.value)" class="input-search " />
+                <img class="search-img" src="ICONS/search-icon.png" alt="">
+            </div>
         </div>
     </header>
     <main>
-
-        <div class="gallery-container">
+        <div class="gallery-container-grid layout">
         </div>
-        <div class="canvas-container-out" hidden>
-            <div class="canvas-container">
-                <canvas class="canvas" width="600" height="600"></canvas>
+        <div class="canvas-container layout" hidden>
+            <div class="canvas-box">
+                <canvas class="canvas" width="400" height="400" ></canvas>
             </div>
-            <div class="grid">
-                <div class="div1 flex-center"> <input class="input-text" name="input-text" type="text"
+            <div class="btns-grid">
+                <div class="input-text-container flex-center"> <input class="input-text" name="input-text" type="text"
                         placeholder="put your meme" onchange="onTextAdd(event,this.value)" autocomplete="off"></div>
-                <div class="div15 flex-center"><button class="btn arrow-up" onclick="onMoveText(-10)"><img
+                <div class="arrow-up-box flex-center"><button class="btn arrow-up" onclick="onMoveText(-10)"><img
                             src="ICONS/arrow-up.png" alt=""></button></div>
-                <div class="div2 flex-center"><button class="btn lines-up" onclick="onChangeLines(event,1)"><img
+                <div class="lines-up-box flex-center"><button class="btn lines-up" onclick="onChangeLines(event,1)"><img
                             src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button></div>
-                <div class="div4 flex-center"><button class="btn add-meme"><img src="ICONS/add.png" alt=""></button>
+                <div class="add-meme-box flex-center"><button class="btn add-meme"><img src="ICONS/add.png"
+                            alt=""></button>
                 </div>
-                <div class="div3 flex-center"> <button class="btn trash" onclick="onDeleteMeme()"><img
+                <div class="trash-box flex-center"> <button class="btn trash" onclick="onDeleteMeme()"><img
                             src="ICONS/trash.png"></button>
                 </div>
-                <div class="div16 flex-center"><button class="btn arrow-down" onclick="onMoveText(10)"><img
+                <div class="arrow-down-box flex-center"><button class="btn arrow-down" onclick="onMoveText(10)"><img
                             src="ICONS/arrow-down.png" alt=""></button></div>
-                <div class="div5 flex-center"> <button class="btn increase-font"
+                <div class="increase-font-box flex-center"> <button class="btn increase-font"
                         onclick="onChangeFontSize(event,1)"><img src="ICONS/increase-font-icon.png" alt=""></button>
                 </div>
-                <div class="div6 flex-center"> <button class="btn decrease-font"
+                <div class="decrease-font-box flex-center"> <button class="btn decrease-font"
                         onclick="onChangeFontSize(event,-1)"><img src="ICONS/decrease-font-icon.png" alt=""></button>
                 </div>
-                <div class="div7 flex-center"><button class="btn align-right"
+                <div class="align-left-box flex-center"><button class="btn align-right"
                         onclick="onChangeAlign(event,'right')"><img src="ICONS/align-to-left.png" alt=""></button></div>
-                <div class="div8 flex-center"><button class="btn align-center"
+                <div class="align-center-box flex-center"><button class="btn align-center"
                         onclick="onChangeAlign(event,'center')"><img src="ICONS/center-text-alignment.png"
                             alt=""></button></div>
-                <div class="div9 flex-center"><button class="btn align-left" onclick="onChangeAlign(event,'left')"><img
-                            src="ICONS/align-to-right.png" alt=""></button></div>
-                <div class="div10 flex-center"> <select class="select-font" onchange="onChangeFont(event,value)">
+                <div class="align-right-box flex-center"><button class="btn align-left"
+                        onclick="onChangeAlign(event,'left')"><img src="ICONS/align-to-right.png" alt=""></button></div>
+                <div class="font-select-box flex-center"> <select class="select-font"
+                        onchange="onChangeFont(event,value)">
                         <option value="IMPACT">IMPACT</option>
                         <option value="Arial">Arial</option>
                         <option value="Verdana">Verdana</option>
                     </select></div>
-                <div class="div11 flex-center"><button class="btn stroke-color" onclick="onChangeStrokeColorBtn()"><img
-                            src="ICONS/text-stroke.png" alt=""></button>
+                <div class="stroke-color-box flex-center"><button class="btn stroke-color"
+                        onclick="onChangeStrokeColorBtn()"><img src="ICONS/text-stroke.png" alt=""></button>
                     <input type="color" name="input-stroke" value="#ffffff" class="input-stroke"
                         onchange="onChangeStrokeColor(this.value)" hidden>
                 </div>
-                <div class="div12 flex-center"><button class="btn fill-color" onclick="onChangeFillColorBtn()"><img
-                            src="ICONS/paint-board-and-brush.png" alt=""></button>
+                <div class="fill-color-box flex-center"><button class="btn fill-color"
+                        onclick="onChangeFillColorBtn()"><img src="ICONS/paint-board-and-brush.png" alt=""></button>
                     <input type="color" name="input-fill" class="input-fill" onchange="onChangeFillColor(this.value)"
                         hidden>
                 </div>
-                <div class="div13">
+                <div class="emojies flex-center">
                     <img src="ICONS/arrow-left.png" alt="">
                     <img id="emoji-1"
                         src="ICONS/hairmoustachehairstylefontclip-artillustrationblack-and-monical-png-779_1024.png"
@@ -82,7 +86,19 @@
                     <img id="emoji-2" src="ICONS/neck.png" alt="" onclick="onEmojiDraw(this.src)">
                     <img src="ICONS/arrow-right.png" alt="">
                 </div>
-                <div class="div14"></div>
+                <div class="down-up-load-box ">
+                    <a href="#" class="btn download" onclick="downloadCanvas(this)" download="">Download</a>
+                    <a href="#" class="btn upload" download="">Upload</a>
+                    <!-- <div class="inputs">
+                        <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                      
+                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                          <input name="img" id="imgData" type="hidden" />
+                          <button class="btn" type="submit">Publish</button>
+                          <div class="share-container"></div>
+                        </form>
+                     -->
+                </div>
             </div>
         </div>
     </main>
@@ -91,6 +107,7 @@
     </footer>
 
     <script src="js/storage-service.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/util.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/main.js"></script>

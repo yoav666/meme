@@ -13,27 +13,31 @@ var gPos;
 var gLines = 0;
 var gCurrIdx = 0;
 var gIsChange = false;
+var gImg;
 
 function onInit() {
     gCanvas = document.querySelector('.canvas')
     gCtx = gCanvas.getContext('2d')
     renderGallery()
 }
+function onOpenCloseMenu(){
+    var elBtnMenu= document.querySelector('.nav')
+    elBtnMenu.classList.toggle('menu-open')
+}
 function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
+    const elContainer = document.querySelector('.canvas-box')
     gCanvas.width = elContainer.offsetWidth
     gCanvas.height = elContainer.offsetHeight
 }
 function onImgSelect(imgId) {
-    var galleryContainer = document.querySelector('.gallery-container')
+    var galleryContainer = document.querySelector('.gallery-container-grid')
     galleryContainer.style.display = 'none'
-    var memeEditor = document.querySelector('.canvas-container-out')
+    var memeEditor = document.querySelector('.canvas-container')
     memeEditor.style.display = 'flex'
     var searchbar=document.querySelector('.search');
     searchbar.style.display='none'
     resizeCanvas()
-    gstartPos = { posX: gCanvas.width / 2, posY: gCanvas.height / 10 }
-    console.log(gstartPos)
+    gstartPos = { posX: gCanvas.width / 2, posY: gCanvas.height / 8 }
     var memeToCanvas = getNewMeme(imgId, gCurrIdx, gstartPos.posX, gstartPos.posY)
     gText = memeToCanvas.lines[gCurrIdx].txt
     gfontSize = memeToCanvas.lines[gCurrIdx].size
@@ -57,9 +61,9 @@ function onEmojiDraw(url){
     gCtx.drawImage(img,gCanvas.width/2,gCanvas.height/2,200,200)
 }
 function closeEditor() {
-    var galleryContainer = document.querySelector('.gallery-container')
+    var galleryContainer = document.querySelector('.gallery-container-grid')
     galleryContainer.style.display = 'grid'
-    var memeEditor = document.querySelector('.canvas-container-out')
+    var memeEditor = document.querySelector('.canvas-container')
     memeEditor.style.display = 'none'
     var searchbar=document.querySelector('.search');
     searchbar.style.display='flex'
@@ -86,7 +90,7 @@ function onTextAdd(ev, txt) {
         newLine.posY = gPos.posY
     } else if (meme.lines.length === 1) {
         newLine.posX = gCanvas.width / 2
-        newLine.posY = gCanvas.height - gCanvas.height / 10
+        newLine.posY = gCanvas.height - gCanvas.height / 8
     } else {
         newLine.posX = gCanvas.width / 2
         newLine.posY = gCanvas.height - gCanvas.height / 2
@@ -311,10 +315,39 @@ function renderGallery() {
     var strHTMLs = imgs.map(function (img) {
         return `<img id="${img.id}" onclick="onImgSelect(this.id)" src="${img.url}">`
     })
-    var elgallery = document.querySelector('.gallery-container')
+    var elgallery = document.querySelector('.gallery-container-grid')
     elgallery.innerHTML = strHTMLs.join('')
 }
 function onSetFilter(txt){
     setFilter({txt: txt})
     renderGallery()
 }
+function downloadCanvas(elLink) {
+    const data = gCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'Meme'
+}
+
+
+
+// function onImgInput(ev) {
+//     loadImageFromInput(ev, renderImg)
+// }
+
+// function loadImageFromInput(ev, onImageReady) {
+//     document.querySelector('.share-container').innerHTML = ''
+//     var reader = new FileReader()
+
+//     reader.onload = function (event) {
+//         var img = new Image()
+//         console.log(img)
+//         img.onload = onImageReady.bind(null, img)
+//         img.src = event.target.result
+//         gImg = img
+//     }
+//     reader.readAsDataURL(ev.target.files[0])
+// }
+
+// function renderImg(img) {
+//     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+// }
